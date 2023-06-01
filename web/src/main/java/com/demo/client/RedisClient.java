@@ -59,7 +59,7 @@ public class RedisClient {
 	 * @return
 	 */
 	public String getMeter(){
-		return getData("meter");
+		return getData("recent_one_hour");
 	}
 
 

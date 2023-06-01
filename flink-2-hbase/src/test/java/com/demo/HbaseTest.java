@@ -10,6 +10,8 @@ import org.apache.hadoop.hbase.client.Table;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 
 public class HbaseTest {
 
@@ -27,6 +29,16 @@ public class HbaseTest {
 		ResultScanner scanner = table.getScanner(scan);
 		for (Result r : scanner) {
 			System.out.println(new String(r.getRow()));
+		}
+
+	}
+
+	@Test
+	public void testGetRow() throws IOException {
+		List<Map.Entry> p_history = HbaseClient.getRow("p_history", "1");
+		for (Map.Entry entry : p_history) {
+			System.out.println(entry.getKey());
+			System.out.println(entry.getValue());
 		}
 
 	}

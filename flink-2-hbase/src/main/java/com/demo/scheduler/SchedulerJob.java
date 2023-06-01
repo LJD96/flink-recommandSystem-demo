@@ -26,7 +26,8 @@ public class SchedulerJob {
 	public static void main(String[] args) {
 		//		ScheduledExecutorService pool = new ScheduledThreadPoolExecutor(5);
 		Timer qTimer = new Timer();
-		qTimer.scheduleAtFixedRate(new RefreshTask(), 0, 15 * 1000);// 定时每15分钟
+		// 定时每1分钟
+		qTimer.scheduleAtFixedRate(new RefreshTask(), 0, 15 * 1000);
 
 
 	}

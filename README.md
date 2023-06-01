@@ -17,6 +17,8 @@
 
     数据存储在Hbase的p_history表
 
+    + 实现类：`com.demo.task.UserHistoryTask`
+
   - 用户-兴趣 -> 实现基于上下文的推荐逻辑
 
     根据用户对同一个产品的操作计算兴趣度,计算规则通过操作间隔时间(如购物 - 浏览 < 100s)则判定为一次兴趣事件
@@ -24,17 +26,23 @@
 
     数据存储在Hbase的u_interest表
 
+    + 实现类：`com.demo.task.UserInterestTask`
+
   - 用户画像计算 -> 实现基于标签的推荐逻辑
 
     v1.0按照三个维度去计算用户画像,分别是用户的颜色兴趣,用户的产地兴趣,和用户的风格兴趣.根据日志不断的修改用户画像的数据,记录在Hbase中.
 
     数据存储在Hbase的user表
 
+    + 实现类：`com.demo.task.UserPortraitTask`
+
   - 产品画像记录  -> 实现基于标签的推荐逻辑
 
     用两个维度记录产品画像,一个是喜爱该产品的年龄段,另一个是性别
 
     数据存储在Hbase的prod表
+
+    + 实现类：`com.demo.task.ProductProtaritTask`
 
   - 事实热度榜 -> 实现基于热度的推荐逻辑 
 
@@ -44,6 +52,8 @@
 
     数据存储在redis中,按照时间戳存储list
 
+    + 实现类：`com.demo.task.TopProductTask`
+
   - 日志导入
 
     从Kafka接收的数据直接导入进Hbase事实表,保存完整的日志log,日志中包含了用户Id,用户操作的产品id,操作时间,行为(如购买,点击,推荐等).
@@ -51,6 +61,9 @@
     数据按时间窗口统计数据大屏需要的数据,返回前段展示
 
     数据存储在Hbase的con表
+    
+    + 实现类：`com.demo.task.LogTask`
+    
 
 - b. web模块
 
@@ -99,13 +112,13 @@
 
 ### 3. 前台推荐页面
 
-​ 当前推荐结果分为3列,分别是热度榜推荐,协同过滤推荐和产品画像推荐
+ 当前推荐结果分为3列,分别是热度榜推荐,协同过滤推荐和产品画像推荐
 
 <div align=center><img src="resources/pic/推荐页面.png" width="80%" height="100%"></div>
 
 ### 4. 后台数据大屏
 
-​ **在后台上显示推荐系统的实时数据**,数据来自其他Flink计算模块的结果.目前包含热度榜和1小时日志接入量两个指标. 
+ **在后台上显示推荐系统的实时数据**,数据来自其他Flink计算模块的结果.目前包含热度榜和1小时日志接入量两个指标. 
 真实数据位置在resource/database.sql
 
 <div align=center><img src="resources/pic/后台数据.png" width="80%" height="100%"></div>

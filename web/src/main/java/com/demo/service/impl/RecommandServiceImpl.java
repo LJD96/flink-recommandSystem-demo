@@ -218,7 +218,7 @@ public class RecommandServiceImpl implements RecommandService {
 		topList = topList.stream().filter(Objects::nonNull).collect(Collectors.toList());
 		if (topList.size() < 10) {
 			// 尽量多的拿产品列表
-			topList.addAll(productService.selectInitPro(100));
+			topList.addAll(productService.selectInitPro(2));
 			topList = topList.stream().distinct().collect(Collectors.toList());
 			logger.info("top: {}", topList);
 		}

@@ -57,6 +57,32 @@ public class ProductCoeff {
 			String age_40 = HbaseClient.getData("prod", proId, "age", Constants.AGE_40);
 			String age_50 = HbaseClient.getData("prod", proId, "age", Constants.AGE_50);
 			String age_60 = HbaseClient.getData("prod", proId, "age", Constants.AGE_60);
+
+			if(woman == null){
+				woman = "0";
+			}
+			if(man == null){
+				man = "0";
+			}
+			if(age_10 == null){
+				age_10 = "0";
+			}
+			if(age_20 == null){
+				age_20 = "0";
+			}
+			if(age_30 == null){
+				age_30 = "0";
+			}
+			if(age_40 == null){
+				age_40 = "0";
+			}
+			if(age_50 == null){
+				age_50 = "0";
+			}
+			if(age_60 == null){
+				age_60 = "0";
+			}
+
 			entity.setMan(Integer.valueOf(man));
 			entity.setWoman(Integer.valueOf(woman));
 			entity.setAge_10(Integer.valueOf(age_10));
@@ -90,11 +116,4 @@ public class ProductCoeff {
 				+ product.getAge_50() * target.getAge_50() + product.getAge_60() * target.getAge_60();
 		return Math.sqrt(total) / sqrt;
 	}
-
-	public static void main(String[] args) throws IOException {
-		String data = HbaseClient.getData("prod", "2", "sex", "2");
-		System.out.println(data);
-	}
-
-
 }

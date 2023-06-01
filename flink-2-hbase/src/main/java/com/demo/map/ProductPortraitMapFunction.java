@@ -13,6 +13,12 @@ import java.sql.ResultSet;
  * @author XINZE
  */
 public class ProductPortraitMapFunction implements MapFunction<String, String> {
+    /**
+     *
+     * @param s: kafka中的每条消息，如：4,2,1684738905,1
+     * @return 不用返回任意结果，因为已经存到HBase中了
+     * @throws Exception
+     */
     @Override
     public String map(String s) throws Exception {
         LogEntity log = LogToEntity.getLog(s);
